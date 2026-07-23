@@ -5,7 +5,7 @@ from datetime import datetime
 
 from functools import wraps
 from dotenv import load_dotenv
-from flask import Flask, jsonify, redirect, render_template, request, url_for, session
+from flask import Flask, jsonify, redirect, render_template, request, url_for, session, send_from_directory
 from supabase import create_client, Client
 
 from data_penyakit import DATA_PENYAKIT, SEMUA_GEJALA, DESKRIPSI_GEJALA
@@ -82,6 +82,7 @@ except Exception as e:
 
 def simpan_riwayat(nama_pasien: str, umur: int, jenis_kelamin: str, gejala_ids: list, diagnosa: str, skor: float, rating: int = 0) -> int:
     """Simpan ke Supabase; fallback ke SQLite jika gagal. Return record ID."""
+    row_id = 0
     timestamp = datetime.now().strftime("%d %B %Y, %H:%M:%S")
     data_sqlite = {
         "nama_pasien": nama_pasien,
@@ -292,6 +293,15 @@ def logout():
 # ===========================================================================
 # ROUTES
 # ===========================================================================
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, "static", "img"),
+        "favicon.svg",
+        mimetype="image/svg+xml",
+    )
+
 
 @app.route("/")
 def index():
