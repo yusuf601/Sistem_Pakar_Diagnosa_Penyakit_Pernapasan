@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Diagnova - Asisten AI Pribadi untuk Kesehatan Pernapasan Anda.">
-    <title>{% block title %}Diagnova — Cek Kesehatan Pernapasan{% endblock %}</title>
+    <meta name="description" content="Asisten AI Pribadi untuk Kesehatan Pernapasan Anda.">
+    <title>{% block title %}Cek Kesehatan Pernapasan{% endblock %}</title>
 
     <!-- Google Fonts: Inter & Outfit (for headings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +82,7 @@
                     <i class="fas fa-lungs"></i>
                 </div>
                 <div>
-                    <h1 class="font-display font-bold text-slate-900 dark:text-white text-xl tracking-tight">Diagnova</h1>
+                    <h1 class="font-display font-bold text-slate-900 dark:text-white text-xl tracking-tight">Sistem Pakar</h1>
                     <span class="text-xs text-brand-600 dark:text-brand-400 font-semibold tracking-wider uppercase">AI Health</span>
                 </div>
             </a>
@@ -90,9 +90,6 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-1 bg-white/50 dark:bg-slate-800/50 p-1.5 rounded-full border border-white dark:border-slate-700">
                 <a href="{{ url_for('index') }}#form-diagnosa" class="px-5 py-2 text-sm font-semibold rounded-full {% if request.endpoint == 'index' %}bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm{% else %}text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white{% endif %} transition-all">Mulai Diagnosa</a>
-                <a href="{{ url_for('edukasi') }}" class="px-5 py-2 text-sm font-semibold rounded-full {% if request.endpoint == 'edukasi' %}bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm{% else %}text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white{% endif %} transition-all">Edukasi</a>
-                <a href="{{ url_for('tentang') }}" class="px-5 py-2 text-sm font-semibold rounded-full {% if request.endpoint == 'tentang' %}bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm{% else %}text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white{% endif %} transition-all">Info Medis</a>
-                <a href="{{ url_for('tentang_kami') }}" class="px-5 py-2 text-sm font-semibold rounded-full {% if request.endpoint == 'tentang_kami' %}bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm{% else %}text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white{% endif %} transition-all">Tentang Kami</a>
                 
                 {% if session.get('logged_in') %}
                 <div class="w-px h-5 bg-slate-300 dark:bg-slate-600 mx-2"></div>
@@ -122,9 +119,6 @@
     <div id="mobileMenu" class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 absolute w-full shadow-xl">
         <div class="px-4 py-4 space-y-2">
             <a href="{{ url_for('index') }}#form-diagnosa" class="block px-4 py-3 rounded-xl font-medium {% if request.endpoint == 'index' %}bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-white{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800{% endif %}">Mulai Diagnosa</a>
-            <a href="{{ url_for('edukasi') }}" class="block px-4 py-3 rounded-xl font-medium {% if request.endpoint == 'edukasi' %}bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-white{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800{% endif %}">Edukasi</a>
-            <a href="{{ url_for('tentang') }}" class="block px-4 py-3 rounded-xl font-medium {% if request.endpoint == 'tentang' %}bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-white{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800{% endif %}">Info Medis</a>
-            <a href="{{ url_for('tentang_kami') }}" class="block px-4 py-3 rounded-xl font-medium {% if request.endpoint == 'tentang_kami' %}bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-white{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800{% endif %}">Tentang Kami</a>
             {% if session.get('logged_in') %}
             <a href="{{ url_for('riwayat') }}" class="block px-4 py-3 rounded-xl font-medium {% if request.endpoint == 'riwayat' %}bg-slate-800 text-white{% else %}text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800{% endif %}">Dashboard Admin</a>
             <a href="{{ url_for('logout') }}" class="block px-4 py-3 rounded-xl font-bold text-rose-500 hover:bg-rose-50 dark:hover:bg-slate-800">Keluar</a>
@@ -149,17 +143,14 @@
                 <i class="fas fa-lungs text-sm"></i>
             </div>
             <div>
-                <h4 class="font-display font-bold text-white text-base">Diagnova</h4>
+                <h4 class="font-display font-bold text-white text-base">Sistem Pakar</h4>
                 <p class="text-xs text-brand-400 tracking-wide">AI Health System</p>
             </div>
         </div>
         <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             <a href="{{ url_for('index') }}#form-diagnosa" class="hover:text-white transition-colors">Mulai Diagnosa</a>
-            <a href="{{ url_for('edukasi') }}" class="hover:text-white transition-colors">Edukasi</a>
-            <a href="{{ url_for('tentang') }}" class="hover:text-white transition-colors">Info Medis</a>
-            <a href="{{ url_for('tentang_kami') }}" class="hover:text-white transition-colors">Tentang Kami</a>
         </nav>
-        <p class="text-xs opacity-50 text-center">&copy; 2026 Diagnova. All rights reserved.</p>
+        <p class="text-xs opacity-50 text-center">&copy; 2026. All rights reserved.</p>
     </div>
 </footer>
 
