@@ -9,3 +9,4 @@ ENV/
 riwayat.db
 .vscode/
 .idea/
+.vercel

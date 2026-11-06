@@ -17,10 +17,17 @@ from metode import certainty_factor_method, get_semua_gejala_terformat
 # ---------------------------------------------------------------------------
 load_dotenv()
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join("/tmp", "riwayat.db") if os.getenv("VERCEL") else os.path.join(BASE_DIR, "riwayat.db")
+
 # ---------------------------------------------------------------------------
 # Inisialisasi Flask
 # ---------------------------------------------------------------------------
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static"),
+)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "mediexpert_secret_2025")
 
 # ---------------------------------------------------------------------------
@@ -28,8 +35,6 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY", "mediexpert_secret_2025")
 # ---------------------------------------------------------------------------
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
-DB_PATH      = os.path.join(BASE_DIR, "riwayat.db")
 
 _supabase: Client = None
 _use_sqlite = False   # Will switch to True if Supabase unavailable
